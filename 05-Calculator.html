@@ -15,7 +15,7 @@
       margin-top:50px;
       margin-left:500px;
       padding-bottom: 30px;
-      background-color: hsla(0, 7%, 9%, 0.918);
+      background-color: hsla(200, 2%, 28%, 0.918);
       border-radius: 10px;
       font-size: 2rem;
       font-family: Arial, sans-serif;
@@ -62,24 +62,26 @@
       color: #fff;
     }
 
-    input{
-      height: 50px;
-      width: 220px;
-      margin-left: 37px;
+    #display{
+      border-radius: 5px;
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      height: 1500px;
+      width: 250px;
+      margin-left: 18px;
       margin-bottom: 10px;
       font-size: 1.5rem;
       text-align: right;
-      margin-bottom:50px;
-      overflow: hidden;
       border: none;
     }
+    
   </style>
 </head>
 
 <body>
 <div class="body">
   <p>Calculator</p>
-    <input type="text" readonly>
+    <input id="display" type="text" readonly>
   <div class="buttons">
     <button class="operators" onclick="clearDisplay()">AC</button>
     <button class="operators" onclick="deleteLast()">⌫</button>
@@ -87,17 +89,17 @@
     <button onclick="addValue('7')">7</button>
     <button onclick="addValue('8')">8</button>
     <button onclick="addValue('9')">9</button>
-    <button class="operators" onclick="divideValue('/')">÷</button>
+    <button class="operators" onclick="addValue('/')">÷</button>
     <br>
     <button onclick="addValue('4')">4</button>
     <button onclick="addValue('5')">5</button>
     <button onclick="addValue('6')">6</button>
-    <button class="operators" onclick="multiplyValue('*')">x</button>
+    <button class="operators" onclick="addValue('*')">x</button>
     <br>
     <button onclick="addValue('1')">1</button>
     <button onclick="addValue('2')">2</button>
     <button onclick="addValue('3')">3</button>
-    <button class="operators" onclick="minusValue('-')">-</button>
+    <button class="operators" onclick="addValue('-')">-</button>
     <br>
     <button onclick="addValue('.')">.</button>
     <button onclick="addValue('0')">0</button>
@@ -107,7 +109,27 @@
 </div>
 
   <script>
+const display = document.getElementById("display");
 
+function addValue(input){
+  display.value += input;
+}
+
+function clearDisplay(){
+  display.value = "";
+}
+
+function deleteLast(){
+  display.value = display.value.slice(0, -1);
+}
+
+function calculate(){
+  try{
+    display.value = eval(display.value);
+  } catch (error) {
+    display.value = "Error";
+  }
+}
   </script>
 </body>
 </html>
